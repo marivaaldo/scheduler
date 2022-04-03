@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Hangfire" Version="1.7.28" />
+    <PackageReference Include="Hangfire.InMemory" Version="0.3.4" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="6.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Scheduler.Jobs.Infrastructure.Hangfire\Scheduler.Jobs.Infrastructure.Hangfire.csproj" />
+    <ProjectReference Include="..\Scheduler.Jobs.Sample.Application\Scheduler.Jobs.Sample.Application.csproj" />
+    <ProjectReference Include="..\Scheduler.Jobs.Sample.Infrastructure\Scheduler.Jobs.Sample.Infrastructure.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Scheduler.Jobs.Domain\Scheduler.Jobs.Domain.csproj" />
+    <ProjectReference Include="..\Scheduler.Jobs.Sample.Domain\Scheduler.Jobs.Sample.Domain.csproj" />
+  </ItemGroup>
+
+</Project>

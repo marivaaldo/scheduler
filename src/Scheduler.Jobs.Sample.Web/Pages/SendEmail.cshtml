@@ -1,0 +1,20 @@
+﻿@page
+@model Scheduler.Jobs.Sample.Web.Pages.SendEmailModel
+@{
+}
+
+<form method="post">
+    <p>
+        From: <input asp-for="Email.From" type="email" required />
+    </p>
+    <p>
+        To: <input asp-for="Email.To" type="email" required />
+    </p>
+    <p>
+        Subject: <input asp-for="Email.Subject" required />
+    </p>
+    <p>
+        Message: <textarea asp-for="Email.Message" required></textarea>
+    </p>
+    <input type="submit" />
+</form>
