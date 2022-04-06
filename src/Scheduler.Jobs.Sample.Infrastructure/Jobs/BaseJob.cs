@@ -1,4 +1,5 @@
 ﻿using Scheduler.Jobs.Domain;
+using Scheduler.Jobs.Domain.Console;
 using Scheduler.Jobs.Sample.Domain.Enums;
 using System.Runtime.ExceptionServices;
 

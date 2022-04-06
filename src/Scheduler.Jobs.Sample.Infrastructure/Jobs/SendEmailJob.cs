@@ -19,7 +19,13 @@ namespace Scheduler.Jobs.Sample.Infrastructure.Jobs
         {
             Console.WriteLine($"Send e-mail (From: {email.From}, To: {email.To})");
 
+            var progressBar = Console.CreateProgressBar();
+
+            progressBar.SetValue(10);
+
             var success = _emailService.ProcessSend(email);
+            
+            progressBar.SetValue(100);
 
             if (!success)
             {

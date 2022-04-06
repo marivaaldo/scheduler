@@ -7,10 +7,10 @@ namespace Scheduler.Jobs.Infrastructure.Hangfire.Extensions
     {
         public static IServiceCollection AddHangfireJobProvider(this IServiceCollection services)
         {
-            services.AddSingleton<IJobProvider, JobProvider>();
-            services.AddSingleton<JobProvider>();
-
-            services.AddTransient(typeof(Job<,>));
+            services
+                .AddSingleton<IJobProvider, JobProvider>()
+                .AddSingleton<JobProvider>()
+                .AddTransient(typeof(Job<,>));
 
             return services;
         }

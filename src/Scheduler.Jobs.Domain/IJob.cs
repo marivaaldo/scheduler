@@ -1,4 +1,6 @@
-﻿namespace Scheduler.Jobs.Domain
+﻿using Scheduler.Jobs.Domain.Console;
+
+namespace Scheduler.Jobs.Domain
 {
     public interface IJob<D> where D : class
     {

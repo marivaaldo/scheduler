@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Scheduler.Jobs.Infrastructure.Hangfire\Scheduler.Jobs.Infrastructure.Hangfire.csproj" />
     <ProjectReference Include="..\Scheduler.Jobs.Sample.Application\Scheduler.Jobs.Sample.Application.csproj" />
   </ItemGroup>
 

@@ -7,7 +7,7 @@ using System.Collections.Concurrent;
 
 namespace Scheduler.Jobs.Infrastructure.Hangfire
 {
-    public class JobProvider : IJobProvider
+    public sealed class JobProvider : IJobProvider
     {
         private readonly IBackgroundJobClient _backgroundJobClient;
         private readonly IRecurringJobManager _recurringJobManager;
@@ -118,7 +118,9 @@ namespace Scheduler.Jobs.Infrastructure.Hangfire
             where T : class, IJob<D>
             where D : class
         {
-            return _backgroundJobClient.Create<Job<T, D>>(o => o.Execute(data, null), new EnqueuedState(GetQueue<T, D>()));
+            var state = new AwaitingState(parentJobId, new EnqueuedState(GetQueue<T, D>()));
+
+            return _backgroundJobClient.Create<Job<T, D>>(o => o.Execute(data, null), state);
         }
 
         private void Recurring<T, D>(string cronExpression, D data, bool trigger, TimeZoneInfo timeZone, string name)
@@ -126,7 +128,7 @@ namespace Scheduler.Jobs.Infrastructure.Hangfire
             where D : class
         {
             if (string.IsNullOrWhiteSpace(name))
-                name = nameof(T);
+                name = typeof(T).Name;
 
             _recurringJobManager.AddOrUpdate<Job<T, D>>(name, o => o.Execute(data, null), cronExpression, timeZone, queue: GetQueue<T, D>());
 

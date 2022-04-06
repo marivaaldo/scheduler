@@ -1,9 +1,10 @@
 ﻿using Hangfire.Server;
 using Scheduler.Jobs.Domain;
+using Scheduler.Jobs.Domain.Console;
 
 namespace Scheduler.Jobs.Infrastructure.Hangfire
 {
-    public class Job<T, D> : IJob<D>
+    public sealed class Job<T, D> : IJob<D>
         where T : class, IJob<D>
         where D : class
     {
