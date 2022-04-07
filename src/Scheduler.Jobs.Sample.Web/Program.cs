@@ -5,6 +5,13 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services
     .AddApplication()
+    .AddEndpointsApiExplorer()
+    .AddSwaggerGen();
+
+builder.Services
+    .AddControllers();
+
+builder.Services
     .AddRazorPages();
 
 var app = builder
@@ -18,6 +25,9 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
+app.UseSwagger()
+    .UseSwaggerUI();
+
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
@@ -26,6 +36,8 @@ app.UseRouting();
 app.UseAuthorization();
 
 app.MapRazorPages();
+
+app.MapControllers();
 
 app.UseApplication();
 
