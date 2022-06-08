@@ -7,6 +7,7 @@ namespace Scheduler.Jobs.Domain
         string JobId { get; set; }
         IJobConsole Console { get; set; }
 
+        string Name { get; }
         string Queue { get; }
         void Execute(D data);
     }

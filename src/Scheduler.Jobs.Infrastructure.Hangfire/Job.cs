@@ -15,6 +15,8 @@ namespace Scheduler.Jobs.Infrastructure.Hangfire
             _job = job;
         }
 
+        public string Name => _job.Name;
+
         public string Queue => _job.Queue;
 
         public string JobId { get => _job.JobId; set => _job.JobId = value; }

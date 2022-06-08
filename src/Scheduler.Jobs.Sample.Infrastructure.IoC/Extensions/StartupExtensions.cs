@@ -52,8 +52,20 @@ namespace Scheduler.Jobs.Sample.Infrastructure.IoC.Extensions
 
         public static IApplicationBuilder UseApplication(this IApplicationBuilder app)
         {
-            app.UseHangfireDashboard();
-         
+            app.UseHangfireDashboard(options: new DashboardOptions
+            {
+                DisplayNameFunc = (context, job) =>
+                {
+                    using var scope = app.ApplicationServices.CreateScope();
+
+                    var jobType = job.Type.GenericTypeArguments.First();
+                    var jobInstance = scope.ServiceProvider.GetService(jobType);
+                    var name = (string)jobType.GetProperty(nameof(IJob<object>.Name)).GetValue(jobInstance, null);
+
+                    return name;
+                }
+            });
+
             GlobalConfiguration.Configuration.UseActivator(new ContainerJobActivator(app.ApplicationServices));
 
             var jobProvider = app.ApplicationServices.GetService<IJobProvider>();

@@ -7,6 +7,14 @@ namespace Scheduler.Jobs.Sample.Infrastructure.Jobs
 {
     public abstract class BaseJob : BaseJob<string>
     {
+        public BaseJob() : base()
+        {
+        }
+
+        public BaseJob(string name) : base(name)
+        {
+        }
+
         public override void Execute(string data)
         {
             Execute();
@@ -18,9 +26,20 @@ namespace Scheduler.Jobs.Sample.Infrastructure.Jobs
     public abstract class BaseJob<D> : IJob<D>
         where D : class
     {
+        public BaseJob()
+        {
+            Name = this.GetType().Name;
+        }
+        public BaseJob(string name)
+        {
+            Name = name;
+        }
+
         public string JobId { get; set; }
 
         public IJobConsole Console { get; set; }
+
+        public string Name { get; }
 
         public string Queue => JobQueue.ToString();
 
